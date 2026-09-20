@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:windowSoftInputMode="adjustResize"
+    android:background="@android:color/white"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -132,7 +133,13 @@
                     android:inputType="text"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+
+                    android:textColor="#131B2E"
+                    android:textColorHint="#788394"
+                    />
+
+
 
                 <TextView
                     android:id="@+id/textView17"
@@ -160,7 +167,11 @@
                         android:inputType="text|textPassword"
                         android:paddingStart="16dp"
                         android:paddingEnd="48dp"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+
+                        android:textColor="#131B2E"
+                        android:textColorHint="#788394"
+                        />
 
                     <ImageView
                         android:id="@+id/loginPasswordToggle"
@@ -182,7 +193,9 @@
                     android:background="@drawable/bg_button_orange"
                     app:backgroundTint="#F97316"
                     android:text="Login"
-                    android:textColorLink="#F97316" />
+                    android:textColorLink="#F97316"
+                    android:textColor="#FFFFFF"
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -240,7 +253,11 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:textColorLink="#F97316"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+
+                    android:textColor="#131B2E"
+                    android:textColorHint="#788394"
+                    />
 
                 <TextView
                     android:id="@+id/textView4"
@@ -276,7 +293,10 @@
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="0dp"
                         android:layout_weight="1"
-                        android:entries="@array/barangays" />
+                        android:entries="@array/barangays"
+
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        />
                 </LinearLayout>
 
                 <TextView
@@ -311,7 +331,11 @@
                     android:inputType="phone"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+
+                    android:textColor="#131B2E"
+                    android:textColorHint="#788394"
+                    />
 
                 <TextView
                     android:id="@+id/textView6"
@@ -339,7 +363,11 @@
                         android:inputType="text|textPassword"
                         android:paddingStart="16dp"
                         android:paddingEnd="48dp"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+
+                        android:textColor="#131B2E"
+                        android:textColorHint="#788394"
+                        />
 
                     <ImageView
                         android:id="@+id/regPasswordToggle"
@@ -357,6 +385,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="13sp"
                     android:text="I verify that I am a resident/visitor in Bacolod City authorized to transmit emergency reports under R.A. 10121."
+                    android:textColor="#788394"
                     android:textSize="13sp" />
 
                 <Button
@@ -369,6 +398,7 @@
                     android:textAllCaps="false"
                     android:textStyle="bold"
                     app:backgroundTint="#F97316"
+                    android:textColor="#FFFFFF"
                     app:cornerRadius="16dp"
                     tools:ignore="DuplicateIds" />
 
@@ -395,7 +425,8 @@
                         android:layout_weight="1"
                         android:text="Log In"
                         android:textColor="#F97316"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        />
 
                 </LinearLayout>
 
