@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="barangays">
+        <item>Brgy. Mansilingan</item>
+        <item>Brgy. Mandalagan</item>
+        <item>Brgy. Alijis</item>
+        <item>Brgy. Alangilan</item>
+        <item>Brgy. Granada</item>
+        <item>Brgy. Tangub</item>
+        <item>Brgy. Villamonte</item>
+        <item>Brgy. Taculing</item>
+    </string-array>
+</resources>
