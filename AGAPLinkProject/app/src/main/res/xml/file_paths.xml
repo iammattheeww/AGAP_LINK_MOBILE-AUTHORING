@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <cache-path name="evidence_captures" path="evidence/" />
+    <external-cache-path name="evidence_captures_external" path="evidence/" />
+</paths>

@@ -1,6 +1,7 @@
 package com.example.agaplinkproject;
 
 // IMPORT NECESSARY ANDROID UI WIDGETS AND BUNDLE FOR ACTIVITY LIFECYCLE
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 // IMPORT ANDROIDX CLASSES FOR MODERN EDGE-TO-EDGE DISPLAY SUPPORT
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -32,8 +34,8 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity {
 
     // HARDCODED VALID CREDENTIALS FOR MOCKING THE LOGIN PROCESS
-    private static final String VALID_NAME = "Juan Dela Cruz";
-    private static final String VALID_PASSWORD = "Password1";
+    private static final String VALID_NAME = "admin";
+    private static final String VALID_PASSWORD = "admin123";
 
     // REGEX PATTERN: ENSURES FIRST AND LAST NAME USING LETTERS, ALLOWING SPACES, DOTS, APOSTROPHES, OR DASHES
     private static final Pattern NAME_PATTERN =
@@ -222,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // HELPER METHOD TO PROCESS USER LOGIN
+    // HELPER METHOD TO PROCESS USER LOGIN
     private void attemptLogin() {
         // RETRIEVE AND TRIM TEXT FROM INPUT FIELDS
         String name = loginName.getText().toString().trim();
@@ -246,10 +249,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // CHECK INPUT AGAINST HARDCODED MOCK CREDENTIALS
-        if (name.equalsIgnoreCase(VALID_NAME) && password.equals(VALID_PASSWORD)) {
-            // SUCCESSFUL LOGIN: DISPLAY WELCOME MESSAGE
+        if (name.equalsIgnoreCase(VALID_NAME) && password.equals(VALID_PASSWORD)){
             Toast.makeText(this, "Welcome, " + VALID_NAME + "!", Toast.LENGTH_SHORT).show();
-            // TODO: OPEN THE NEXT SCREEN HERE
+
+            // HAND OFF TO THE DEDICATED HomeDashboardActivity INSTEAD OF SWAPPING THIS
+            // ACTIVITY'S CONTENT VIEW IN PLACE. setContentView() HERE WOULD DESTROY AND
+            // REPLACE THE ENTIRE VIEW HIERARCHY (INCLUDING ANY BottomNavigationView AND
+            // ITS LISTENER) EVERY TIME THE SCREEN CHANGED, WHICH IS WHY BOTTOM NAV
+            // BECAME DISCONNECTED AFTER LEAVING THE DASHBOARD. HomeDashboardActivity AND
+            // ReportActivity EACH OWN AND WIRE UP THEIR OWN BOTTOM NAVIGATION IN THEIR
+            // OWN onCreate(), SO NAVIGATING BETWEEN THEM VIA startActivity() KEEPS THE
+            // BOTTOM NAV FUNCTIONAL AND CORRECTLY SELECTED ON EVERY SCREEN.
+            startActivity(new Intent(MainActivity.this, HomeDashboardActivity.class));
+            finish();
         } else {
             // FAILED LOGIN: DISPLAY ERROR MESSAGE
             Toast.makeText(this, "Incorrect full name or password", Toast.LENGTH_SHORT).show();

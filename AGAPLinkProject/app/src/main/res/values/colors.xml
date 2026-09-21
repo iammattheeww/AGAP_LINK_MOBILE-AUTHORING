@@ -1,5 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+<!--    <color name="black">#FF000000</color>-->
+    <!-- APP BAR & PROFILE -->
+    <color name="header_navy">#1E293B</color>
+    <color name="header_badge_bg">#3E2723</color>
+    <color name="header_badge_text">#FDBA74</color>
+    <color name="profile_circle_bg">#C2410C</color>
+
+    <!-- BASE & NEUTRALS -->
+    <color name="screen_bg">#F8FAFC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="slate_100">#F1F5F9</color>
+    <color name="slate_200">#E2E8F0</color>
+    <color name="slate_400">#94A3B8</color>
+    <color name="slate_500">#64748B</color>
+    <color name="slate_700">#334155</color>
+    <color name="slate_900">#0F172A</color>
+
+    <!-- CONNECTIVITY STATUS -->
+    <color name="emerald_online">#10B981</color>
+    <color name="dispatch_text">#0F172A</color>
+
+    <!-- LOCATION & INSERT CARDS -->
+    <color name="location_header_orange">#C2410C</color>
+    <color name="fused_pill_bg">#EFF6FF</color>
+    <color name="fused_pill_text">#1E40AF</color>
+
+    <!-- HERO EMERGENCY CARD -->
+    <color name="hero_bg">#FFF1E8</color>
+    <color name="hero_stroke">#FED7AA</color>
+    <color name="hero_action_badge">#991B1B</color>
+    <color name="hero_sos_text">#78350F</color>
+    <color name="hero_subtitle">#7C2D12</color>
+    <color name="brand_orange">#F97316</color>
+
+    <!-- ACTIVE TRACKING CARD -->
+    <color name="tracking_blue">#2563EB</color>
+    <color name="ticket_badge_bg">#E2E8F0</color>
+    <color name="dispatched_chip_bg">#DBEAFE</color>
+    <color name="dispatched_chip_text">#1E40AF</color>
+    <color name="eta_orange">#C2410C</color>
+    <color name="action_btn_bg">#DBEAFE</color>
+    <color name="action_btn_text">#1E3A8A</color>
+
+    <!-- HOTLINES ROW -->
+    <color name="directory_title">#475569</color>
+    <color name="hotline_card_stroke">#E2E8F0</color>
+    <color name="pnp_blue">#0F172A</color>
+    <color name="bfp_orange">#EA580C</color>
+    <color name="cdrrmo_blue">#1D4ED8</color>
+
+    <!-- FALLBACK NOTICE -->
+    <color name="fallback_banner_bg">#EFF6FF</color>
+    <color name="fallback_banner_text">#334155</color>
+
+    <!-- SCREEN 3: ONE-TAP REPORT & EVIDENCE SUBMISSION -->
+    <color name="local_status_bg">#EFF6FF</color>
+    <color name="back_button_bg">#E2E8F0</color>
+
+    <!-- Offline Mode Banner -->
+    <color name="offline_banner_bg">#FEF9E7</color>
+    <color name="offline_banner_accent">#F59E0B</color>
+    <color name="offline_banner_title">#92400E</color>
+    <color name="offline_banner_body">#78350F</color>
+    <color name="cached_badge_bg">#FDE68A</color>
+    <color name="cached_badge_text">#78350F</color>
+
+    <!-- Incident Type Cards -->
+    <color name="incident_selected_bg">#FFF1E8</color>
+    <color name="incident_selected_stroke">#FDBA74</color>
+    <color name="incident_unselected_stroke">#E2E8F0</color>
+    <color name="severity_badge_bg">#FFE4CC</color>
+    <color name="severity_badge_text">#9A3412</color>
+    <color name="icon_square_slate_bg">#E2E8F0</color>
+
+    <!-- Location Telemetry -->
+    <color name="telemetry_pill_bg">#E0E7FF</color>
+    <color name="telemetry_pill_text">#3730A3</color>
+    <color name="map_placeholder_bg">#DBEAFE</color>
+    <color name="coord_label_bg">#1E293B</color>
+
+    <!-- Evidence Submission -->
+    <color name="evidence_placeholder_bg">#EFF6FF</color>
+    <color name="evidence_icon_bg">#DBEAFE</color>
+
+    <!-- Tactical Remarks -->
+    <color name="remarks_input_bg">#F1F5F9</color>
+    <color name="remarks_input_border">#E2E8F0</color>
+    <color name="remarks_hint_text">#94A3B8</color>
+    <color name="remarks_meta_text">#64748B</color>
+
+    <!-- Bottom Navigation (active state) -->
+    <color name="nav_item_selected">#F97316</color>
+    <color name="nav_item_unselected">#64748B</color>
+
+    <!-- SCREEN 4: TRACK & INCIDENT HISTORY -->
+    <color name="slate_300">#CBD5E1</color>
+    <color name="calendar_dot_prior">#94A3B8</color>
+    <color name="timeline_dot_resolved">#7C2D12</color>
+    <color name="timeline_line">#E2E8F0</color>
+    <color name="field_camera_gradient_start">#1E293B</color>
+    <color name="field_camera_gradient_end">#0F172A</color>
+    <color name="rating_star_empty">#CBD5E1</color>
+    <color name="records_badge_text">#C2410C</color>
+
+    <!-- SCREEN 5: EMERGENCY DIRECTORY & SAFETY ADVISORIES -->
+    <!-- Verified Helplines hero card (light-blue variant of the hero_bg/hero_stroke pattern) -->
+    <color name="directory_hero_stroke">#BFDBFE</color>
+    <!-- Service filter chips -->
+    <color name="chip_selected_bg">#9A3412</color>
+    <!-- Directory card phone-number container -->
+    <color name="phone_chip_bg">#F1F5F9</color>
 </resources>

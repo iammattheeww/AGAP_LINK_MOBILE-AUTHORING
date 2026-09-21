@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SINGLE DAY CELL USED BY THE SEPTEMBER 2026 CALENDAR GRID ON SCREEN 4 (TRACK & INCIDENT HISTORY).
+     Inflated repeatedly (one per day) and populated/styled at runtime by TrackActivity. -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dp"
+    android:layout_height="40dp"
+    android:layout_weight="1"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tvDayNumber"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textColor="@color/slate_900"
+        android:textSize="13sp" />
+
+    <View
+        android:id="@+id/dotIndicator"
+        android:layout_width="4dp"
+        android:layout_height="4dp"
+        android:layout_below="@id/tvDayNumber"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/bg_dot_circle"
+        android:backgroundTint="@color/calendar_dot_prior"
+        android:visibility="gone" />
+
+</RelativeLayout>
