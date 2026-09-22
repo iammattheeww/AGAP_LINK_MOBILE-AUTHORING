@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- SHARED BOTTOM NAVIGATION MENU: THE FOUR DESTINATIONS (HOME, REPORT, TRACK,
+     DIRECTORY) USED BY THE BottomNavigationView IN HomeDashboardActivity,
+     ReportActivity, TrackActivity, AND DirectoryActivity SO ALL FOUR SCREENS
+     SHOW THE SAME TAB SET. -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_home"

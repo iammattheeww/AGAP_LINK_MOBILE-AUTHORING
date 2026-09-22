@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- SCREEN 2 — HOME DASHBOARD. ROOT RelativeLayout: A FIXED TOP APP BAR, A FIXED
+     BOTTOM NAVIGATION BAR, AND A SCROLLABLE CONTENT AREA IN BETWEEN HOLDING THE
+     CONNECTIVITY STATUS, GPS LOCATION, HERO EMERGENCY ACTION, ACTIVE DISPATCH
+     TRACKING, AND QUICK-DIAL HOTLINE CARDS. -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootDashboard"
@@ -75,6 +79,8 @@
                 android:textSize="11sp" />
         </LinearLayout>
 
+        <!-- TAPPING THIS AVATAR OPENS THE SHARED PROFILE/LOG-OUT MENU (SEE
+             ProfileMenuHelper). -->
         <FrameLayout
             android:id="@+id/btnProfileAvatar"
             android:layout_width="38dp"
@@ -91,6 +97,8 @@
                 android:src="@drawable/ic_user_profile" />
         </FrameLayout>
 
+        <!-- LIVE CLOCK + DATE, BUILT WITH THE PLATFORM TextClock WIDGET SO BOTH
+             LABELS TICK AUTOMATICALLY WITHOUT ANY JAVA-SIDE TIMER CODE. -->
         <LinearLayout
             android:id="@+id/layoutClockGroup"
             android:layout_width="wrap_content"
@@ -123,6 +131,9 @@
     </RelativeLayout>
 
     <!-- BOTTOM NAVIGATION -->
+    <!-- BOTTOM NAVIGATION: SHARED FOUR-TAB MENU (@menu/bottom_nav_menu), WIRED UP IN
+         HomeDashboardActivity.setupBottomNavigation(). ITEM ICON/TEXT COLOR IS DRIVEN
+         BY THE nav_item_color_selector STATE-LIST SO THE ACTIVE TAB IS TINTED ORANGE. -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"

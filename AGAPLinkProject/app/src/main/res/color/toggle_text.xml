@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- TEXT COLOR FOR THE LOGIN SCREEN'S SIGN IN / CREATE ACCOUNT TOGGLE TABS
+     (activity_main.xml): WHITE WHEN THE TAB IS SELECTED, MUTED SLATE OTHERWISE. -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_selected="true" android:color="#FFFFFF" />
     <item android:color="#5B6785" />

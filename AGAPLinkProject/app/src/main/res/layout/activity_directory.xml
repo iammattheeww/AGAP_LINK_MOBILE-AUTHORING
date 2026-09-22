@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- SCREEN 5 — EMERGENCY DIRECTORY & SAFETY ADVISORIES. ROOT RelativeLayout: A
+     FIXED TOP APP BAR, A FIXED BOTTOM NAVIGATION BAR, AND A SCROLLABLE CONTENT
+     AREA WITH THE VERIFIED HELPLINES HERO CARD, THE SEARCH FIELD, THE SERVICE
+     FILTER CHIPS, THE FOUR AGENCY HOTLINE CARDS (EACH WITH A "CALL NOW" BUTTON
+     WIRED TO Intent.ACTION_DIAL), AND THE CDRRMO WEATHER ADVISORY. -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootDirectory"

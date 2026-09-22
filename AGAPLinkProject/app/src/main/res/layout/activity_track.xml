@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- SCREEN 4 — TRACK & INCIDENT HISTORY. ROOT RelativeLayout: A FIXED TOP APP BAR,
+     A FIXED BOTTOM NAVIGATION BAR, AND A SCROLLABLE CONTENT AREA WITH THE
+     SEPTEMBER 2026 CALENDAR (POPULATED AT RUNTIME BY TrackActivity), THE ACTIVE
+     INCIDENT CARD WITH ITS DISPATCH PROGRESS CHAIN, THE RESPONSE-SPEED STAR
+     RATING CARD, AND THE ARCHIVED INCIDENT HISTORY ROWS. -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootTrack"

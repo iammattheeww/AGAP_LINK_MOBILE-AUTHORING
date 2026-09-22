@@ -108,6 +108,9 @@ public class DirectoryActivity extends AppCompatActivity implements View.OnClick
     // SETUP
     // ------------------------------------------------------------------
 
+    // BIND EVERY VIEW THIS ACTIVITY NEEDS FROM activity_directory.xml: THE HEADER/
+    // NAV CONTROLS, THE SEARCH FIELD, THE FOUR SERVICE FILTER CHIPS, THE FOUR
+    // HOTLINE CARDS WITH THEIR "CALL NOW" BUTTONS, AND THE OFFICIAL PORTAL LINK.
     private void initViews() {
         btnProfileAvatar = findViewById(R.id.btnProfileAvatar);
         bottomNavigation = findViewById(R.id.bottomNavigation);
@@ -131,6 +134,9 @@ public class DirectoryActivity extends AppCompatActivity implements View.OnClick
         btnOfficialPortal = findViewById(R.id.btnOfficialPortal);
     }
 
+    // POPULATE directoryEntries WITH ONE ENTRY PER HOTLINE CARD, PAIRING EACH CARD
+    // WITH ITS SERVICE CATEGORY AND A SEARCHABLE TEXT BLOB (AGENCY NAME/ACRONYM/
+    // KEYWORDS) SO applyFilters() CAN LATER SHOW/HIDE CARDS BY CATEGORY AND SEARCH TEXT.
     private void buildDirectoryEntries() {
         directoryEntries.add(new DirectoryEntry(cardBfp, CATEGORY_FIRE,
                 "Bureau of Fire Protection BFP Emergency Fire Response Station 1"));
@@ -142,6 +148,9 @@ public class DirectoryActivity extends AppCompatActivity implements View.OnClick
                 "Corazon Locsin Montelibano Memorial Regional Hospital CLMMRH Tertiary ER Trauma"));
     }
 
+    // ATTACH CLICK BEHAVIOR TO EVERY TAPPABLE VIEW ON THE DIRECTORY SCREEN (PROFILE
+    // AVATAR, FILTER CHIPS, "CALL NOW" BUTTONS, OFFICIAL PORTAL LINK), AND A TEXT
+    // WATCHER ON THE SEARCH FIELD SO THE CARD LIST RE-FILTERS ON EVERY KEYSTROKE.
     private void registerListeners() {
         if (btnProfileAvatar != null) {
             btnProfileAvatar.setOnClickListener(v -> ProfileMenuHelper.showProfileMenu(this, btnProfileAvatar));
@@ -181,6 +190,8 @@ public class DirectoryActivity extends AppCompatActivity implements View.OnClick
     // SECTION: SEARCH + SERVICE FILTER CHIPS
     // ------------------------------------------------------------------
 
+    // MARK THE TAPPED FILTER CHIP AS SELECTED (AND ALL OTHERS AS UNSELECTED), THEN
+    // RE-APPLY THE COMBINED CATEGORY + SEARCH FILTER TO THE HOTLINE CARDS.
     private void onChipSelected(String category) {
         selectedCategory = category;
 
@@ -211,6 +222,9 @@ public class DirectoryActivity extends AppCompatActivity implements View.OnClick
     // BOTTOM NAVIGATION
     // ------------------------------------------------------------------
 
+    // WIRE UP THE BOTTOM NAVIGATION BAR'S FOUR DESTINATIONS (HOME, REPORT, TRACK,
+    // DIRECTORY). SINCE THIS ACTIVITY IS THE DIRECTORY SCREEN, THE nav_directory
+    // BRANCH JUST CONFIRMS THE SELECTION INSTEAD OF STARTING A NEW ACTIVITY.
     private void setupBottomNavigation() {
         if (bottomNavigation == null) return;
 
@@ -230,12 +244,16 @@ public class DirectoryActivity extends AppCompatActivity implements View.OnClick
                     finish();
                     return true;
                 } else if (itemId == R.id.nav_report) {
+                    // SAME CLEAR_TOP + finish() PATTERN AS THE nav_home BRANCH ABOVE,
+                    // JUST TARGETING ReportActivity INSTEAD.
                     Intent reportIntent = new Intent(DirectoryActivity.this, ReportActivity.class);
                     reportIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(reportIntent);
                     finish();
                     return true;
                 } else if (itemId == R.id.nav_track) {
+                    // SAME CLEAR_TOP + finish() PATTERN AS THE nav_home BRANCH ABOVE,
+                    // JUST TARGETING TrackActivity INSTEAD.
                     Intent trackIntent = new Intent(DirectoryActivity.this, TrackActivity.class);
                     trackIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(trackIntent);

@@ -50,6 +50,8 @@ public class TrackActivity extends AppCompatActivity implements View.OnClickList
             {false, false, false, false, false, false, false},
             {false, false, false, false, true, true, true}
     };
+    // THE DAY NUMBER TO HIGHLIGHT AS "TODAY" (SOLID ORANGE FILL) AND THE DAYS THAT
+    // GET A SMALL DOT INDICATOR BECAUSE AN INCIDENT WAS LOGGED ON THEM.
     private static final int TODAY_DAY = 19;
     private static final int[] PRIOR_INCIDENT_DAYS = {12, 15};
 
@@ -89,6 +91,10 @@ public class TrackActivity extends AppCompatActivity implements View.OnClickList
     // SETUP
     // ------------------------------------------------------------------
 
+    // BIND EVERY VIEW THIS ACTIVITY NEEDS FROM activity_track.xml: THE HEADER/NAV
+    // CONTROLS, THE CALENDAR ROW CONTAINER THE GRID IS BUILT INTO, THE FIVE STAR
+    // RATING ICONS AND THEIR LABEL/COMMENT/SUBMIT CONTROLS, AND THE ARCHIVED
+    // INCIDENT HISTORY ROWS.
     private void initViews() {
         btnProfileAvatar = findViewById(R.id.btnProfileAvatar);
         bottomNavigation = findViewById(R.id.bottomNavigation);
@@ -110,6 +116,9 @@ public class TrackActivity extends AppCompatActivity implements View.OnClickList
         rowHistoricalTraffic = findViewById(R.id.rowHistoricalTraffic);
     }
 
+    // ATTACH CLICK BEHAVIOR TO EVERY TAPPABLE VIEW ON THE TRACK SCREEN: THE PROFILE
+    // AVATAR, THE CALENDAR MONTH ARROWS (MOCKED — SEE TOASTS BELOW), THE FIVE
+    // RATING STARS, THE SUBMIT-RATING BUTTON, AND THE ARCHIVED INCIDENT ROWS.
     private void registerListeners() {
         if (btnProfileAvatar != null) {
             btnProfileAvatar.setOnClickListener(v -> ProfileMenuHelper.showProfileMenu(this, btnProfileAvatar));
@@ -139,17 +148,24 @@ public class TrackActivity extends AppCompatActivity implements View.OnClickList
     // SECTION: SEPTEMBER 2026 CALENDAR
     // ------------------------------------------------------------------
 
+    // PROGRAMMATICALLY BUILD THE 5-ROW x 7-COLUMN SEPTEMBER 2026 CALENDAR GRID INSIDE
+    // calendarRows, INFLATING ONE item_calendar_day.xml CELL PER DAY FROM THE HARD-CODED
+    // CALENDAR_DAYS/OUT_OF_MONTH DATA RATHER THAN USING THE PLATFORM CalendarView WIDGET,
+    // SO EACH DAY CELL CAN BE STYLED (TODAY / PRIOR-INCIDENT DOT / OUT-OF-MONTH DIMMING)
+    // TO MATCH THE WIREFRAME.
     private void buildCalendarGrid() {
         if (calendarRows == null) return;
 
         LayoutInflater inflater = LayoutInflater.from(this);
 
+        // BUILD ONE HORIZONTAL LinearLayout PER CALENDAR WEEK ROW.
         for (int row = 0; row < CALENDAR_DAYS.length; row++) {
             LinearLayout rowLayout = new LinearLayout(this);
             rowLayout.setOrientation(LinearLayout.HORIZONTAL);
             rowLayout.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
+            // INFLATE AND STYLE EACH DAY CELL WITHIN THE CURRENT WEEK ROW.
             for (int col = 0; col < CALENDAR_DAYS[row].length; col++) {
                 int dayNumber = CALENDAR_DAYS[row][col];
                 boolean outOfMonth = OUT_OF_MONTH[row][col];
@@ -163,6 +179,8 @@ public class TrackActivity extends AppCompatActivity implements View.OnClickList
                 boolean isToday = !outOfMonth && dayNumber == TODAY_DAY;
                 boolean isPriorIncident = !outOfMonth && containsDay(PRIOR_INCIDENT_DAYS, dayNumber);
 
+                // COLOR/BACKGROUND THE DAY NUMBER BASED ON WHETHER IT'S OUT-OF-MONTH,
+                // TODAY, OR AN ORDINARY IN-MONTH DAY.
                 if (outOfMonth) {
                     tvDayNumber.setTextColor(getColor(R.color.slate_300));
                     tvDayNumber.setBackground(null);
@@ -174,10 +192,12 @@ public class TrackActivity extends AppCompatActivity implements View.OnClickList
                     tvDayNumber.setBackground(null);
                 }
 
+                // SHOW THE SMALL DOT INDICATOR ONLY ON IN-MONTH DAYS THAT HAD A LOGGED INCIDENT.
                 if (dotIndicator != null) {
                     dotIndicator.setVisibility(isPriorIncident ? View.VISIBLE : View.GONE);
                 }
 
+                // ONLY IN-MONTH DAYS ARE TAPPABLE; TAPPING ONE VISUALLY SELECTS IT.
                 if (!outOfMonth) {
                     final int selectedDay = dayNumber;
                     final boolean wasToday = isToday;
@@ -193,6 +213,8 @@ public class TrackActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    // LINEAR SEARCH HELPER: TRUE IF day APPEARS IN THE GIVEN days ARRAY, USED TO
+    // CHECK WHETHER A CALENDAR CELL SHOULD SHOW THE PRIOR-INCIDENT DOT.
     private boolean containsDay(int[] days, int day) {
         for (int d : days) {
             if (d == day) return true;
@@ -226,11 +248,15 @@ public class TrackActivity extends AppCompatActivity implements View.OnClickList
     // SECTION: RESPONSE-SPEED RATING
     // ------------------------------------------------------------------
 
+    // RECORD WHICH STAR (1-5) THE CITIZEN TAPPED AS THE NEW RATING AND REFRESH THE UI.
     private void onStarTapped(int stars) {
         currentRating = stars;
         applyRatingUI();
     }
 
+    // REPAINT THE FIVE STAR ICONS (FILLED UP TO currentRating, OUTLINE AFTER THAT)
+    // AND UPDATE THE "X.0 / 5.0 - <QUALIFIER>" LABEL TO MATCH THE CURRENT RATING.
+    // THIS IS A CUSTOM ROW OF ImageViews RATHER THAN THE PLATFORM RatingBar WIDGET.
     private void applyRatingUI() {
         ImageView[] stars = {star1, star2, star3, star4, star5};
         for (int i = 0; i < stars.length; i++) {
@@ -239,6 +265,7 @@ public class TrackActivity extends AppCompatActivity implements View.OnClickList
             stars[i].setImageResource(filled ? R.drawable.ic_star_filled : R.drawable.ic_star_outline);
         }
 
+        // MAP THE NUMERIC RATING TO A HUMAN-READABLE QUALIFIER LABEL.
         String qualifier;
         if (currentRating >= 5) {
             qualifier = "Excellent Response";
@@ -257,6 +284,9 @@ public class TrackActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    // BUILD AND SHOW A CONFIRMATION TOAST FOR THE SUBMITTED RATING (AND OPTIONAL
+    // COMMENT), THEN CLEAR THE COMMENT FIELD. THIS IS MOCKED/LOCAL, NOT SENT OVER
+    // A NETWORK, CONSISTENT WITH THE APP'S OFFLINE-FIRST DESIGN.
     private void onSubmitRatingClicked() {
         String comment = etCitizenComment != null ? etCitizenComment.getText().toString().trim() : "";
         String message = "Feedback submitted (" + currentRating + "/5) for Incident #BCD-2026-0891";
@@ -275,6 +305,9 @@ public class TrackActivity extends AppCompatActivity implements View.OnClickList
     // BOTTOM NAVIGATION
     // ------------------------------------------------------------------
 
+    // WIRE UP THE BOTTOM NAVIGATION BAR'S FOUR DESTINATIONS (HOME, REPORT, TRACK,
+    // DIRECTORY). SINCE THIS ACTIVITY IS THE TRACK SCREEN, THE nav_track BRANCH
+    // JUST CONFIRMS THE SELECTION INSTEAD OF STARTING A NEW ACTIVITY.
     private void setupBottomNavigation() {
         if (bottomNavigation == null) return;
 
@@ -294,6 +327,8 @@ public class TrackActivity extends AppCompatActivity implements View.OnClickList
                     finish();
                     return true;
                 } else if (itemId == R.id.nav_report) {
+                    // SAME CLEAR_TOP + finish() PATTERN AS THE nav_home BRANCH ABOVE,
+                    // JUST TARGETING ReportActivity INSTEAD.
                     Intent reportIntent = new Intent(TrackActivity.this, ReportActivity.class);
                     reportIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(reportIntent);
@@ -303,6 +338,8 @@ public class TrackActivity extends AppCompatActivity implements View.OnClickList
                     // Already on the Track screen.
                     return true;
                 } else if (itemId == R.id.nav_directory) {
+                    // SAME CLEAR_TOP + finish() PATTERN AS THE nav_home BRANCH ABOVE,
+                    // JUST TARGETING DirectoryActivity INSTEAD.
                     Intent directoryIntent = new Intent(TrackActivity.this, DirectoryActivity.class);
                     directoryIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(directoryIntent);
@@ -328,6 +365,9 @@ public class TrackActivity extends AppCompatActivity implements View.OnClickList
     // CLICK ROUTING
     // ------------------------------------------------------------------
 
+    // CENTRAL CLICK ROUTER: DISPATCHES EACH TAPPED VIEW'S ID TO THE HANDLER FOR
+    // THAT SPECIFIC TRACK-SCREEN ACTION (A STAR RATING TAP, THE SUBMIT-RATING
+    // BUTTON, OR ONE OF THE ARCHIVED INCIDENT HISTORY ROWS).
     @Override
     public void onClick(View v) {
         int viewId = v.getId();

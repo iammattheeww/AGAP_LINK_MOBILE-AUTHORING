@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- SCREEN 1 — LOGIN / REGISTRATION. ROOT ConstraintLayout HOSTING THE APP LOGO
+     HEADER, THE SIGN-IN/CREATE-ACCOUNT TOGGLE TABS, AND A SCROLLABLE FORM AREA
+     THAT SWAPS BETWEEN THE LOGIN AND REGISTER FORMS. -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,6 +12,7 @@
     android:background="@android:color/white"
     tools:context=".MainActivity">
 
+    <!-- HEADER: AGAP-LINK LOGO, APP TITLE, AND SUBTITLE. -->
     <LinearLayout
         android:id="@+id/agap_link_layout1"
         android:layout_width="match_parent"
@@ -49,6 +53,8 @@
 
     </LinearLayout>
 
+    <!-- SIGN IN / CREATE ACCOUNT TOGGLE: TWO EQUAL-WEIGHT TABS INSIDE A PILL-SHAPED
+         CONTAINER. TAPPING EITHER TAB (WIRED IN MainActivity) SWAPS THE VISIBLE FORM. -->
     <LinearLayout
         android:id="@+id/agap_link_layout2"
         android:layout_width="match_parent"
@@ -88,6 +94,8 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+    <!-- SCROLLABLE FORM AREA: HOLDS BOTH THE LOGIN AND REGISTER FORMS STACKED IN THE
+         SAME CONTAINER. ONLY ONE IS VISIBLE AT A TIME (CONTROLLED FROM MainActivity). -->
     <ScrollView
         android:id="@+id/formScroll"
         android:layout_width="0dp"
@@ -106,6 +114,8 @@
             android:orientation="vertical"
             android:padding="24dp">
 
+            <!-- LOGIN FORM: FULL NAME FIELD, PASSWORD FIELD (WITH SHOW/HIDE TOGGLE),
+                 LOGIN BUTTON, AND A LINK TO SWITCH TO THE REGISTER FORM. -->
             <LinearLayout
                 android:id="@+id/loginForm"
                 android:layout_width="match_parent"
@@ -150,6 +160,8 @@
                     android:textColor="#1D3E6F"
                     android:textStyle="bold" />
 
+                <!-- PASSWORD FIELD WRAPPED IN A FrameLayout SO THE SHOW/HIDE EYE ICON
+                     CAN BE OVERLAID ON TOP OF THE EditText'S END EDGE. -->
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -225,6 +237,9 @@
 
             </LinearLayout>
 
+            <!-- REGISTER FORM: FULL NAME, BARANGAY SPINNER, PHONE NUMBER, PASSWORD
+                 (WITH SHOW/HIDE TOGGLE), RESIDENCY CONFIRMATION CHECKBOX, REGISTER
+                 BUTTON, AND A LINK TO SWITCH BACK TO THE LOGIN FORM. -->
             <LinearLayout
                 android:id="@+id/registerForm"
                 android:layout_width="match_parent"
@@ -268,6 +283,10 @@
                     android:textColor="#1D3E6F"
                     android:textStyle="bold" />
 
+                <!-- BARANGAY PICKER: A CLICKABLE ROW WRAPPING A Spinner POPULATED FROM
+                     @array/barangays. MainActivity FORWARDS TAPS ON THE WHOLE ROW TO
+                     THE SPINNER SO THE ENTIRE ROW (NOT JUST THE SPINNER'S OWN NARROW
+                     TOUCH TARGET) OPENS THE DROPDOWN. -->
                 <LinearLayout
                     android:id="@+id/barangayBox"
                     android:layout_width="match_parent"
@@ -346,6 +365,9 @@
                     android:textColor="#1D3E6F"
                     android:textStyle="bold" />
 
+                <!-- PASSWORD FIELD WRAPPED IN A FrameLayout SO THE SHOW/HIDE EYE ICON
+                     CAN BE OVERLAID ON TOP OF THE EditText'S END EDGE (SAME PATTERN
+                     AS THE LOGIN FORM'S PASSWORD FIELD ABOVE). -->
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -17,6 +17,10 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.navigation.NavigationBarView;
 
+// SCREEN 2 — HOME DASHBOARD: THE CITIZEN'S LANDING SCREEN AFTER A SUCCESSFUL LOGIN.
+// SHOWS A ONE-TAP "REPORT EMERGENCY NOW" ACTION, QUICK-DIAL CARDS FOR THE PNP, BFP,
+// AND CDRRMO HOTLINES, SHORTCUTS TO THE LIVE MAP / DISPATCH LOGS, AND OWNS THE
+// BOTTOM NAVIGATION BAR SHARED WITH REPORT, TRACK, AND DIRECTORY.
 public class HomeDashboardActivity extends AppCompatActivity implements View.OnClickListener {
 
     // ---------- BACOLOD CITY EMERGENCY HOTLINES ----------
@@ -50,6 +54,8 @@ public class HomeDashboardActivity extends AppCompatActivity implements View.OnC
         setupBottomNavigation();
     }
 
+    // BIND EVERY INTERACTIVE VIEW FROM activity_home_dashboard.xml TO ITS FIELD SO
+    // THE REST OF THE ACTIVITY CAN REFERENCE THEM WITHOUT REPEATED findViewById() CALLS.
     private void initViews() {
         btnProfileAvatar = findViewById(R.id.btnProfileAvatar);
         btnRefreshLocation = findViewById(R.id.btnRefreshLocation);
@@ -62,6 +68,8 @@ public class HomeDashboardActivity extends AppCompatActivity implements View.OnC
         bottomNavigation = findViewById(R.id.bottomNavigation);
     }
 
+    // ATTACH THIS ACTIVITY (View.OnClickListener) TO EVERY TAPPABLE VIEW ON THE
+    // DASHBOARD. NULL CHECKS GUARD AGAINST A VIEW ID MISSING FROM THE INFLATED LAYOUT.
     private void registerListeners() {
         if (btnProfileAvatar != null) {
             btnProfileAvatar.setOnClickListener(this);
@@ -96,6 +104,9 @@ public class HomeDashboardActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+    // CENTRAL CLICK ROUTER: DISPATCHES EACH TAPPED VIEW'S ID TO THE HANDLER FOR
+    // THAT SPECIFIC DASHBOARD ACTION (PROFILE MENU, GPS REFRESH, EMERGENCY REPORT,
+    // LIVE MAP, DISPATCH LOGS, OR ONE OF THE THREE QUICK-DIAL HOTLINE CARDS).
     @Override
     public void onClick(View v) {
         int viewId = v.getId();
@@ -119,6 +130,9 @@ public class HomeDashboardActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+    // WIRE UP THE BOTTOM NAVIGATION BAR'S FOUR DESTINATIONS (HOME, REPORT, TRACK,
+    // DIRECTORY). BECAUSE THIS ACTIVITY IS ALREADY THE HOME SCREEN, THE nav_home
+    // BRANCH JUST CONFIRMS THE SELECTION INSTEAD OF STARTING A NEW ACTIVITY.
     private void setupBottomNavigation() {
         bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -126,6 +140,7 @@ public class HomeDashboardActivity extends AppCompatActivity implements View.OnC
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.nav_home) {
+                    // ALREADY ON THE HOME DASHBOARD; NO NAVIGATION IS NEEDED.
                     Toast.makeText(HomeDashboardActivity.this, "Home selected", Toast.LENGTH_SHORT).show();
                     return true;
                 } else if (itemId == R.id.nav_report) {
@@ -175,6 +190,9 @@ public class HomeDashboardActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+    // OPEN THE DEVICE'S DIALER PRE-FILLED WITH THE GIVEN NUMBER VIA Intent.ACTION_DIAL.
+    // THIS ONLY OPENS THE DIALER (REQUIRES THE USER TO PRESS CALL THEMSELVES), SO NO
+    // CALL_PHONE PERMISSION IS NEEDED.
     private void launchDialer(String phoneNumber) {
         Intent dialIntent = new Intent(Intent.ACTION_DIAL);
         dialIntent.setData(Uri.parse("tel:" + phoneNumber));

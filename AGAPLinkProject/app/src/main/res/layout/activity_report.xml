@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- SCREEN 3 — ONE-TAP REPORT & EVIDENCE SUBMISSION. ROOT RelativeLayout: A FIXED
+     TOP APP BAR, A FIXED BOTTOM NAVIGATION BAR, AND A SCROLLABLE CONTENT AREA WITH
+     THE REPORT HEADER, OFFLINE BANNER, AND THE FOUR NUMBERED SECTIONS (INCIDENT
+     TYPE, LOCATION TELEMETRY, EVIDENCE SUBMISSION, TACTICAL REMARKS) MIRRORED IN
+     ReportActivity.java'S SECTION COMMENTS. -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootReport"
@@ -163,6 +168,8 @@
                 android:paddingEnd="14dp"
                 android:paddingBottom="16dp">
 
+                <!-- TAPPING THIS ARROW CALLS onBackPressed() (SEE ReportActivity.onClick()),
+                     RETURNING TO WHICHEVER SCREEN LAUNCHED THE REPORT FLOW. -->
                 <ImageView
                     android:id="@+id/btnBack"
                     android:layout_width="36dp"

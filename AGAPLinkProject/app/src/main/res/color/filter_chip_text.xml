@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- TEXT COLOR FOR THE DIRECTORY SCREEN'S SERVICE FILTER CHIPS (activity_directory.xml):
+     WHITE WHEN THE CHIP IS SELECTED (DARK BACKGROUND), directory_title OTHERWISE. -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_selected="true" android:color="@color/white" />
     <item android:color="@color/directory_title" />

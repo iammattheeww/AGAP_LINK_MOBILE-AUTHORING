@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- BARANGAY CHOICES FOR THE REGISTRATION SCREEN'S regBarangay Spinner
+         (activity_main.xml), USED TO DESIGNATE THE CITIZEN'S PRIMARY CDRRMO
+         PRECINCT STATION FOR DISPATCH. -->
     <string-array name="barangays">
         <item>Brgy. Mansilingan</item>
         <item>Brgy. Mandalagan</item>

@@ -34,8 +34,11 @@ final class ProfileMenuHelper {
 
     /** Shows the profile/options menu anchored to the tapped avatar view. */
     static void showProfileMenu(Activity activity, View anchor) {
+        // CREATE A POPUP MENU ANCHORED TO THE TAPPED AVATAR VIEW AND ADD A SINGLE
+        // "LOG OUT" ENTRY, IDENTIFIED BY THE LOCAL MENU_ITEM_LOG_OUT ID.
         PopupMenu popupMenu = new PopupMenu(activity, anchor);
         popupMenu.getMenu().add(0, MENU_ITEM_LOG_OUT, 0, "Log Out");
+        // ROUTE THE MENU TAP TO logOut() ONLY WHEN THE "LOG OUT" ITEM IS SELECTED.
         popupMenu.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == MENU_ITEM_LOG_OUT) {
                 logOut(activity);
@@ -52,11 +55,16 @@ final class ProfileMenuHelper {
      * button cannot return to an authenticated screen after logging out.
      */
     private static void logOut(Activity activity) {
+        // WIPE THE LOCAL/MOCK SESSION PREFERENCES SO NOTHING FROM THE PREVIOUS
+        // LOGIN PERSISTS.
         SharedPreferences preferences = activity.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         preferences.edit().clear().apply();
 
         Toast.makeText(activity, "Logged out successfully.", Toast.LENGTH_SHORT).show();
 
+        // RETURN TO MainActivity (THE LOGIN/REGISTER SCREEN) WITH A FRESH TASK,
+        // CLEARING THE ENTIRE BACK STACK SO THE PHYSICAL BACK BUTTON CANNOT
+        // RETURN TO AN AUTHENTICATED SCREEN AFTER LOGGING OUT.
         Intent logoutIntent = new Intent(activity, MainActivity.class);
         logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         activity.startActivity(logoutIntent);
